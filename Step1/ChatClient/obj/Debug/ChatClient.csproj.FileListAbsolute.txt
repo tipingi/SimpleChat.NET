@@ -1,0 +1,8 @@
+D:\github-yoojin\SimpleChat.NET\Step1\ChatClient\bin\Debug\SampleChatClient.exe.config
+D:\github-yoojin\SimpleChat.NET\Step1\ChatClient\bin\Debug\SampleChatClient.exe
+D:\github-yoojin\SimpleChat.NET\Step1\ChatClient\bin\Debug\SampleChatClient.pdb
+D:\github-yoojin\SimpleChat.NET\Step1\ChatClient\obj\Debug\ChatClient.csproj.AssemblyReference.cache
+D:\github-yoojin\SimpleChat.NET\Step1\ChatClient\obj\Debug\ChatClient.csproj.SuggestedBindingRedirects.cache
+D:\github-yoojin\SimpleChat.NET\Step1\ChatClient\obj\Debug\ChatClient.csproj.CoreCompileInputs.cache
+D:\github-yoojin\SimpleChat.NET\Step1\ChatClient\obj\Debug\SampleChatClient.exe
+D:\github-yoojin\SimpleChat.NET\Step1\ChatClient\obj\Debug\SampleChatClient.pdb

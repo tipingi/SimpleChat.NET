@@ -1,21 +1,22 @@
 ﻿using System;
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using System.Threading;
+using System.Text;
 
-namespace SampleChatClient
+namespace ChatClient
 {
     internal class Program
     {
-
         static void Main(string[] args)
         {
             IPAddress ip = IPAddress.Parse("127.0.0.1");
+            //IPAddress ipAddress = Dns.Resolve("localhost").AddressList[0];
             int port = 5000;
             TcpClient client = new TcpClient();
             client.Connect(ip, port);
-            Console.WriteLine("client connected!!");
+            Console.WriteLine("Client Connected");
+
             NetworkStream ns = client.GetStream();
             Thread thread = new Thread(o => ReceiveData((TcpClient)o));
 
@@ -31,8 +32,7 @@ namespace SampleChatClient
             client.Client.Shutdown(SocketShutdown.Send);
             thread.Join();
             ns.Close();
-            client.Close();
-            Console.WriteLine("disconnect from server!!");
+            Console.WriteLine("Disconnect from Server");
             Console.ReadKey();
         }
 
@@ -40,13 +40,15 @@ namespace SampleChatClient
         {
             NetworkStream ns = client.GetStream();
             byte[] receivedBytes = new byte[1024];
+
             int byte_count;
 
-            while ((byte_count = ns.Read(receivedBytes, 0, receivedBytes.Length)) > 0)
+            while((byte_count = ns.Read(receivedBytes, 0, receivedBytes.Length))> 0)
             {
                 Console.Write(Encoding.UTF8.GetString(receivedBytes, 0, byte_count));
             }
 
         }
+
     }
 }

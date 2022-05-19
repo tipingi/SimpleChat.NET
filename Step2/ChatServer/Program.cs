@@ -7,14 +7,13 @@ using System.Threading;
 
 namespace ChatServer
 {
-    class Program
+    internal class Program
     {
         static readonly object _lock = new object();
         static readonly Dictionary<int, TcpClient> list_clients = new Dictionary<int, TcpClient>();
 
         static void Main(string[] args)
         {
-
             int count = 1;
 
             TcpListener ServerSocket = new TcpListener(IPAddress.Any, 5000);
@@ -24,12 +23,14 @@ namespace ChatServer
             {
                 TcpClient client = ServerSocket.AcceptTcpClient();
                 lock (_lock) list_clients.Add(count, client);
-                Console.WriteLine("Someone connected!!");
+                Console.WriteLine("Someone Connected");
 
                 Thread t = new Thread(handle_clients);
                 t.Start(count);
                 count++;
             }
+
+
         }
 
         public static void handle_clients(object o)
@@ -51,8 +52,16 @@ namespace ChatServer
                 }
 
                 string data = Encoding.UTF8.GetString(buffer, 0, byte_count);
-                broadcast(data);
+                brodcast(data);
                 Console.WriteLine(data);
+
+                //
+                
+
+
+
+
+
             }
 
             lock (_lock) list_clients.Remove(id);
@@ -60,7 +69,7 @@ namespace ChatServer
             client.Close();
         }
 
-        public static void broadcast(string data)
+        public static void brodcast(string data)
         {
             byte[] buffer = Encoding.UTF8.GetBytes(data + Environment.NewLine);
 
@@ -74,5 +83,6 @@ namespace ChatServer
                 }
             }
         }
+
     }
 }
