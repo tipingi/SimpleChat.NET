@@ -10,45 +10,54 @@ namespace ChatClient
     {
         static void Main(string[] args)
         {
-            IPAddress ip = IPAddress.Parse("127.0.0.1");
-            //IPAddress ipAddress = Dns.Resolve("localhost").AddressList[0];
-            int port = 5000;
-            TcpClient client = new TcpClient();
-            client.Connect(ip, port);
-            Console.WriteLine("Client Connected");
+            var _ipaddress = IPAddress.Parse("127.0.0.1");
+            var _port_no = 5000;
 
-            NetworkStream ns = client.GetStream();
-            Thread thread = new Thread(o => ReceiveData((TcpClient)o));
+            var _client = new TcpClient();
+            _client.Connect(_ipaddress, _port_no);
 
-            thread.Start(client);
+            Console.WriteLine("connected to server...");
+            
+            var _stream = _client.GetStream();
 
-            string s;
-            while (!string.IsNullOrEmpty((s = Console.ReadLine())))
+            var _thread = new Thread(ReceiveMessage);
+            _thread.Start(_client);
+
+            while (true)
             {
-                byte[] buffer = Encoding.UTF8.GetBytes(s);
-                ns.Write(buffer, 0, buffer.Length);
+                var _message = Console.ReadLine();
+                if (String.IsNullOrEmpty(_message))
+                    break;
+
+                var _buffer = Encoding.UTF8.GetBytes(_message);
+                _stream.Write(_buffer, 0, _buffer.Length);
             }
 
-            client.Client.Shutdown(SocketShutdown.Send);
-            thread.Join();
-            ns.Close();
+            _client.Client.Shutdown(SocketShutdown.Send);
+            _thread.Join();
+
+            _stream.Close();
+
             Console.WriteLine("Disconnect from Server");
             Console.ReadKey();
         }
 
-        static void ReceiveData(TcpClient client)
+        static void ReceiveMessage(object o)
         {
-            NetworkStream ns = client.GetStream();
-            byte[] receivedBytes = new byte[1024];
+            var _client = (TcpClient)o;
 
-            int byte_count;
+            var _stream = _client.GetStream();
+            var _buffer = new byte[1024];
 
-            while((byte_count = ns.Read(receivedBytes, 0, receivedBytes.Length))> 0)
+            while(true)
             {
-                Console.Write(Encoding.UTF8.GetString(receivedBytes, 0, byte_count));
+                var _count = _stream.Read(_buffer, 0, _buffer.Length);
+                if (_count <= 0)
+                    break;
+
+                var _message = Encoding.UTF8.GetString(_buffer, 0, _count);
+                Console.Write(_message);
             }
-
         }
-
     }
 }

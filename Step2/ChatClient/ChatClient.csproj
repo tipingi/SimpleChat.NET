@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{978A97F3-1F03-4246-806D-4EF8FAA7A2A8}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>ChatClient</RootNamespace>
-    <AssemblyName>ChatClient</AssemblyName>
+    <RootNamespace>SimpleChatClient</RootNamespace>
+    <AssemblyName>SimpleChatClient</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

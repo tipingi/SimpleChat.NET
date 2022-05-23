@@ -9,80 +9,75 @@ namespace ChatServer
 {
     internal class Program
     {
-        static readonly object _lock = new object();
-        static readonly Dictionary<int, TcpClient> list_clients = new Dictionary<int, TcpClient>();
+        static readonly object _lock_object = new object();
+        static readonly Dictionary<int, TcpClient> _dict_clients = new Dictionary<int, TcpClient>();
+        
 
         static void Main(string[] args)
         {
-            int count = 1;
+            var _count = 1;
 
-            TcpListener ServerSocket = new TcpListener(IPAddress.Any, 5000);
-            ServerSocket.Start();
+            var _server = new TcpListener(IPAddress.Any, 5000);
+            _server.Start();
 
             while (true)
             {
-                TcpClient client = ServerSocket.AcceptTcpClient();
-                lock (_lock) list_clients.Add(count, client);
-                Console.WriteLine("Someone Connected");
+                var _client = _server.AcceptTcpClient();
+                lock (_lock_object) { _dict_clients.Add(_count, _client); }
+                Console.WriteLine("client #{0} is connected", _count);
 
-                Thread t = new Thread(handle_clients);
-                t.Start(count);
-                count++;
+                var _child_thread = new Thread(handle_clients);
+                _child_thread.Start(_count);
+
+                _count++;
             }
-
-
         }
 
         public static void handle_clients(object o)
         {
-            int id = (int)o;
-            TcpClient client;
+            var _sender = (int)o;
+            var _client = (TcpClient)null;
 
-            lock (_lock) client = list_clients[id];
+            lock (_lock_object) { _client = _dict_clients[_sender]; }
 
             while (true)
             {
-                NetworkStream stream = client.GetStream();
-                byte[] buffer = new byte[1024];
-                int byte_count = stream.Read(buffer, 0, buffer.Length);
+                var _stream = _client.GetStream();
 
-                if (byte_count == 0)
-                {
+                var _buffer = new byte[1024];
+                var _count = _stream.Read(_buffer, 0, _buffer.Length);
+
+                if (_count == 0)
                     break;
-                }
 
-                string data = Encoding.UTF8.GetString(buffer, 0, byte_count);
-                brodcast(data);
-                Console.WriteLine(data);
+                var _message = Encoding.UTF8.GetString(_buffer, 0, _count);
+                brodcast(_message, _sender);
 
-                //
-                
-
-
-
-
-
+                Console.WriteLine(_message);
             }
 
-            lock (_lock) list_clients.Remove(id);
-            client.Client.Shutdown(SocketShutdown.Both);
-            client.Close();
+            lock (_lock_object) { _dict_clients.Remove(_sender); }
+            _client.Client.Shutdown(SocketShutdown.Both);
+            _client.Close();
         }
 
-        public static void brodcast(string data)
+        public static void brodcast(string data, int sender)
         {
-            byte[] buffer = Encoding.UTF8.GetBytes(data + Environment.NewLine);
+            var _packet = Encoding.UTF8.GetBytes(data + Environment.NewLine);
 
-            lock (_lock)
+            lock (_lock_object)
             {
-                foreach (TcpClient c in list_clients.Values)
+                foreach (var _dict in _dict_clients)
                 {
-                    NetworkStream stream = c.GetStream();
+                    if (_dict.Key == sender)
+                        continue;
 
-                    stream.Write(buffer, 0, buffer.Length);
+                    var _client = (TcpClient)_dict.Value;
+
+                    var _stream = _client.GetStream();
+                    _stream.Write(_packet, 0, _packet.Length);
                 }
             }
         }
-
     }
 }
