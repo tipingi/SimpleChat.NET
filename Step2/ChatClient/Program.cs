@@ -20,8 +20,8 @@ namespace ChatClient
             
             var _stream = _client.GetStream();
 
-            var _thread = new Thread(ReceiveMessage);
-            _thread.Start(_client);
+            var _receive_thread = new Thread(ReceiveMessage);
+            _receive_thread.Start(_client);
 
             while (true)
             {
@@ -34,7 +34,7 @@ namespace ChatClient
             }
 
             _client.Client.Shutdown(SocketShutdown.Send);
-            _thread.Join();
+            _receive_thread.Join();
 
             _stream.Close();
 
