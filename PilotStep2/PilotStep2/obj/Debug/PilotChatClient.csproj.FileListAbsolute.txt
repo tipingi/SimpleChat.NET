@@ -1,0 +1,8 @@
+D:\github-yoojin\SimpleChat.NET\PilotStep2\PilotStep2\bin\Debug\PilotStep2.exe.config
+D:\github-yoojin\SimpleChat.NET\PilotStep2\PilotStep2\bin\Debug\PilotStep2.exe
+D:\github-yoojin\SimpleChat.NET\PilotStep2\PilotStep2\bin\Debug\PilotStep2.pdb
+D:\github-yoojin\SimpleChat.NET\PilotStep2\PilotStep2\obj\Debug\PilotChatClient.csproj.AssemblyReference.cache
+D:\github-yoojin\SimpleChat.NET\PilotStep2\PilotStep2\obj\Debug\PilotChatClient.csproj.SuggestedBindingRedirects.cache
+D:\github-yoojin\SimpleChat.NET\PilotStep2\PilotStep2\obj\Debug\PilotChatClient.csproj.CoreCompileInputs.cache
+D:\github-yoojin\SimpleChat.NET\PilotStep2\PilotStep2\obj\Debug\PilotStep2.exe
+D:\github-yoojin\SimpleChat.NET\PilotStep2\PilotStep2\obj\Debug\PilotStep2.pdb
