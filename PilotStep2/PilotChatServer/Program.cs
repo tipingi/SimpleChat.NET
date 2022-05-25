@@ -56,6 +56,8 @@ namespace PilotChatServer
 
                 Broadcast(message, _count);
             }
+            Console.WriteLine("Client #{0} is disconnected", _sender);
+            lock (_lock_objcet) { _dict_client.Remove(_sender); }
             _client.Client.Shutdown(SocketShutdown.Both);
             _client.Close();
         }
@@ -72,7 +74,7 @@ namespace PilotChatServer
 
                     TcpClient _client = _dict.Value;
                     NetworkStream _stream = _client.GetStream();
-                    _stream
+                    _stream.Write(_packet, 0, _packet.Length);
 
                 }
             }

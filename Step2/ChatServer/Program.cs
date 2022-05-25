@@ -9,9 +9,9 @@ namespace ChatServer
 {
     internal class Program
     {
-        static readonly object _lock_object = new object();
-        static readonly Dictionary<int, TcpClient> _dict_clients = new Dictionary<int, TcpClient>();
-        
+        static readonly object _locker = new object();
+        static readonly Dictionary<int, TcpClient> _clients = new Dictionary<int, TcpClient>();
+
 
         static void Main(string[] args)
         {
@@ -23,7 +23,7 @@ namespace ChatServer
             while (true)
             {
                 var _client = _server.AcceptTcpClient();
-                lock (_lock_object) { _dict_clients.Add(_count, _client); }
+                lock (_locker) { _clients.Add(_count, _client); }
                 Console.WriteLine("client #{0} is connected", _count);
 
                 var _child_thread = new Thread(handle_clients);
@@ -38,37 +38,46 @@ namespace ChatServer
             var _sender = (int)o;
             var _client = (TcpClient)null;
 
-            lock (_lock_object) { _client = _dict_clients[_sender]; }
+            lock (_locker) { _client = _clients[_sender]; }
 
-            while (true)
+            try
             {
-                var _stream = _client.GetStream();
-                var _buffer = new byte[1024];
-                var _count = _stream.Read(_buffer, 0, _buffer.Length);
+                while (true)
+                {
+                    var _stream = _client.GetStream();
+                    var _buffer = new byte[1024];
 
-                if (_count == 0)
-                    break;
+                    var _count = _stream.Read(_buffer, 0, _buffer.Length);
+                    if (_count == 0)
+                        break;
 
-                var _message = Encoding.UTF8.GetString(_buffer, 0, _count);
-                Console.WriteLine(_message);
+                    var _message = Encoding.UTF8.GetString(_buffer, 0, _count);
+                    Console.WriteLine(_message);
 
-                broadcast(_message, _sender);               
+                    broadcast(_message, _sender);
+                }
+
+                _client.Client.Shutdown(SocketShutdown.Both);
+                _client.Close();
             }
-
-            Console.WriteLine("client #{0} is disconnected", _sender);
-            lock (_lock_object) { _dict_clients.Remove(_sender); }
-            _client.Client.Shutdown(SocketShutdown.Both);
-            _client.Close();
-           
+            catch (Exception ex)
+            {
+                Console.WriteLine($"client #{_sender} is error: {ex.Message}");
+            }
+            finally
+            {
+                Console.WriteLine("client #{0} is disconnected", _sender);
+                lock (_locker) { _clients.Remove(_sender); }
+            }
         }
 
         public static void broadcast(string data, int sender)
         {
             var _packet = Encoding.UTF8.GetBytes(data + Environment.NewLine);
 
-            lock (_lock_object)
+            lock (_locker)
             {
-                foreach (var _dict in _dict_clients)
+                foreach (var _dict in _clients)
                 {
                     if (_dict.Key == sender)
                         continue;

@@ -34,7 +34,7 @@ namespace ChatClient
             }
 
             _client.Client.Shutdown(SocketShutdown.Send);
-            _receive_thread.Join();
+            _receive_thread.Join(); //쓰레드가 끝나기를 조인하기를 기다림
 
             _stream.Close();
 
