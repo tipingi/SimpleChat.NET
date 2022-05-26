@@ -1,0 +1,95 @@
+WinForm
+Program.cs: 윈폼 생성과 실행
+Form.cs: 폼 프로그래밍  - 주로 수정
+Form.Designer.cs: 자동생성코드(이벤트처리, 컨트롤 속성 등)
+
+
+
+
+
+
+
+<Program.cs>
+
+System.Object
+-> System.Windows.Forms
+-> System.Windows.Application
+
+
+public sealed class Application
+sealed = 상속을 할 수 없음
+응용 프록램을 관리하는 속성 및 정보를 얻기 위한 클래스
+
+1. EnableVisualStyles()
+폼의 스타일 설정: 색, 글꼴, 테마 등으로 시각적인 요소 설정의 허가
+운영체제로부터 가져옴
+
+2. SetCompatibletextrenderingdefault(false)
+폼에 출력할 글자의 렌더링을 GDI vs GDI+ 결정
+false => GDI
+true => GDI+
+
+public static void SetCompatibletextrenderingdefault();
+
+static 이기에 객체를 생성하지 않고 호출해서 사용 가능
+
+3. Run()
+메시지 루프를 실행과 출력할 폼 설정
+
+public static void Run(Form mainForm)
+
+
+<Form.cs>
+ public partial class Form1: Form
+Form이란 클래스를 상속받은 Form1
+
+partial
+- 클래스나 구조체, 인터페이스, 메서드의 정의를 둘 이상의 소스 파일로 분할
+- 규모가 큰 프로젝트일 때 하나의 파일에 다수가 접근할 때 사용
+
+
+
+<Form.Designer.cs>
+폼 위에 올려지는 컨트롤과 폼의 속성을 설정하는 자동생성코드
+되도록 편집하지 않는 것이 좋다.
+
+<Form class>
+폼에 대한 클래스
+
+
+Form 속성 => get, set
+- Handle: 윈도우 핸들
+윈도우 핸들 = 우리가 사용하는 응용 프로그램에 대한 고유 번호(고유 값)
+
+- Text: 컨트롤 또는 윈도우 타이틀바에 텍스트 출력 or 입력
+
+- Visible: 폼 또는 컨트롤의 출력 여부 결정
+
+- Enable: 비활성 또는 활성
+
+- ClientRectangle: 클라이언트 크기 영역을 가져오는 역할 
+= 실제 사용되는 영역
+
+
+메서드
+Invalidate(): 특정 영역 또는 무효화 영역을 다시 출력하는 역할
+Update(): 현재 무효화 영역만 다시 출력
+Activate(): 폼을 활성화
+Close(): 폼을 닫음
+ShowDialog(): 폼을 모달 대화상자로 출력
+
+
+15강부터
+13강안들음
+
+
+
+
+
+
+
+
+
+
+
+
