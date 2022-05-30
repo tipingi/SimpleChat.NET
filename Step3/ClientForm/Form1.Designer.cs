@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+<<<<<<< HEAD
             this.Button1 = new System.Windows.Forms.Button();
             this.ChatHistory = new System.Windows.Forms.TextBox();
             this.UserInput = new System.Windows.Forms.TextBox();
@@ -82,6 +83,15 @@
         private System.Windows.Forms.Button Button1;
         private System.Windows.Forms.TextBox ChatHistory;
         private System.Windows.Forms.TextBox UserInput;
+=======
+            this.components = new System.ComponentModel.Container();
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Text = "Form1";
+        }
+
+        #endregion
+>>>>>>> e1858feceb2625a63198fa4210e25de300b9526a
     }
 }
 

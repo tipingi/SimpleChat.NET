@@ -6,6 +6,7 @@ D:\github-yoojin\SimpleChat.NET\Step2\ChatServer\bin\Debug\SimpleChatServer.exe
 D:\github-yoojin\SimpleChat.NET\Step2\ChatServer\bin\Debug\SimpleChatServer.pdb
 D:\github-yoojin\SimpleChat.NET\Step2\ChatServer\obj\Debug\SimpleChatServer.exe
 D:\github-yoojin\SimpleChat.NET\Step2\ChatServer\obj\Debug\SimpleChatServer.pdb
+<<<<<<< HEAD
 D:\github-yoojin\SimpleChat.NET\Step3\ChatServer\bin\Debug\SimpleChatServer.exe.config
 D:\github-yoojin\SimpleChat.NET\Step3\ChatServer\bin\Debug\SimpleChatServer.exe
 D:\github-yoojin\SimpleChat.NET\Step3\ChatServer\bin\Debug\SimpleChatServer.pdb
@@ -14,3 +15,5 @@ D:\github-yoojin\SimpleChat.NET\Step3\ChatServer\obj\Debug\ChatServer.csproj.Sug
 D:\github-yoojin\SimpleChat.NET\Step3\ChatServer\obj\Debug\ChatServer.csproj.CoreCompileInputs.cache
 D:\github-yoojin\SimpleChat.NET\Step3\ChatServer\obj\Debug\SimpleChatServer.exe
 D:\github-yoojin\SimpleChat.NET\Step3\ChatServer\obj\Debug\SimpleChatServer.pdb
+=======
+>>>>>>> e1858feceb2625a63198fa4210e25de300b9526a

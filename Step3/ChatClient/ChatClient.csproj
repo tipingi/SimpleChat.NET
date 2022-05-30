@@ -35,8 +35,11 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+<<<<<<< HEAD
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
+=======
+>>>>>>> e1858feceb2625a63198fa4210e25de300b9526a
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -45,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <Compile Include="ChatClient.cs" />
     <Compile Include="ClientForm.cs">
       <SubType>Form</SubType>
@@ -52,15 +56,21 @@
     <Compile Include="ClientForm.Designer.cs">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </Compile>
+=======
+    <Compile Include="Program.cs" />
+>>>>>>> e1858feceb2625a63198fa4210e25de300b9526a
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+<<<<<<< HEAD
   <ItemGroup>
     <EmbeddedResource Include="ClientForm.resx">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+=======
+>>>>>>> e1858feceb2625a63198fa4210e25de300b9526a
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
