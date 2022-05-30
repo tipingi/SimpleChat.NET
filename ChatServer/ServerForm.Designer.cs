@@ -39,6 +39,7 @@
             this.ChattingList.Name = "ChattingList";
             this.ChattingList.Size = new System.Drawing.Size(640, 426);
             this.ChattingList.TabIndex = 0;
+            this.ChattingList.TextChanged += new System.EventHandler(this.ChattingList_TextChanged);
             // 
             // UserList
             // 
@@ -47,6 +48,7 @@
             this.UserList.Name = "UserList";
             this.UserList.Size = new System.Drawing.Size(118, 426);
             this.UserList.TabIndex = 1;
+            this.UserList.TextChanged += new System.EventHandler(this.UserList_TextChanged);
             // 
             // ServerForm
             // 
