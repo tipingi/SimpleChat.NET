@@ -12,6 +12,12 @@ namespace ChatServer
         static readonly object _locker = new object();
         static readonly Dictionary<int, TcpClient> _clients = new Dictionary<int, TcpClient>();
 
+        class User
+        {
+            public int count;
+            public string name;
+            public TcpClient client;
+        }
 
         static void Main(string[] args)
         {
@@ -23,6 +29,7 @@ namespace ChatServer
             while (true)
             {
                 var _client = _server.AcceptTcpClient();
+
                 lock (_locker) { _clients.Add(_count, _client); }
                 Console.WriteLine("client #{0} is connected", _count);
 

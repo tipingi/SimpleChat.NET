@@ -33,7 +33,7 @@
             this.tbSendChatMsg = new System.Windows.Forms.TextBox();
             this.btEnter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.tbChatName = new System.Windows.Forms.TextBox();
+            this.tbUserName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btConnectToServer
@@ -64,9 +64,9 @@
             // 
             // btEnter
             // 
-            this.btEnter.Location = new System.Drawing.Point(635, 369);
+            this.btEnter.Location = new System.Drawing.Point(653, 355);
             this.btEnter.Name = "btEnter";
-            this.btEnter.Size = new System.Drawing.Size(138, 54);
+            this.btEnter.Size = new System.Drawing.Size(120, 83);
             this.btEnter.TabIndex = 3;
             this.btEnter.Text = "send message";
             this.btEnter.UseVisualStyleBackColor = true;
@@ -75,26 +75,26 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(55, 29);
+            this.label1.Location = new System.Drawing.Point(15, 34);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(131, 12);
             this.label1.TabIndex = 4;
             this.label1.Text = "Type your chat name:";
             // 
-            // tbChatName
+            // tbUserName
             // 
-            this.tbChatName.Location = new System.Drawing.Point(203, 25);
-            this.tbChatName.Name = "tbChatName";
-            this.tbChatName.Size = new System.Drawing.Size(166, 21);
-            this.tbChatName.TabIndex = 5;
-            this.tbChatName.Text = "yoojin";
+            this.tbUserName.Location = new System.Drawing.Point(152, 31);
+            this.tbUserName.Name = "tbUserName";
+            this.tbUserName.Size = new System.Drawing.Size(166, 21);
+            this.tbUserName.TabIndex = 5;
+            this.tbUserName.Text = "UserName";
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.tbChatName);
+            this.Controls.Add(this.tbUserName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btEnter);
             this.Controls.Add(this.tbSendChatMsg);
@@ -114,7 +114,7 @@
         private System.Windows.Forms.TextBox tbSendChatMsg;
         private System.Windows.Forms.Button btEnter;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox tbChatName;
+        private System.Windows.Forms.TextBox tbUserName;
     }
 }
 

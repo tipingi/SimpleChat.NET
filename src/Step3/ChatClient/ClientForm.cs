@@ -10,14 +10,11 @@ namespace ChatClient
     {
         TcpClient client = new TcpClient();
         NetworkStream stream = default(NetworkStream);
-
         string message = string.Empty;
         public ClientForm()
         {
             InitializeComponent();
         }
-
-
         private void btnEnter_Click(object sender, EventArgs e) //Enter
         {
             byte[] buffer = Encoding.UTF8.GetBytes(this.tbSendChatMsg.Text + "$"); 
@@ -27,12 +24,26 @@ namespace ChatClient
 
         private void button1_Click(object sender, EventArgs e) //Start
         {
-            client.Connect("127.0.0.1", 5000);
-            stream = client.GetStream();
-            tbRecvChatMsg.Text = "Connected to server...";
+            if (!String.IsNullOrEmpty(tbUserName.Text))
+            {
+                client.Connect("127.0.0.1", 5000);
+                stream = client.GetStream();
 
-            Thread receive_message = new Thread(ReceiveMessage);
-            receive_message.Start();
+                byte[] buffer = Encoding.UTF8.GetBytes(tbUserName.Text);
+                stream.Write(buffer, 0, buffer.Length);
+                stream.Flush();
+
+                tbRecvChatMsg.Text = "Connected to server...";
+
+
+                Thread receive_message = new Thread(ReceiveMessage);
+                receive_message.Start();
+            }
+            else
+                MessageBox.Show("Please put your name.");
+                
+
+            
         }
 
         static void ReceiveMessage(object o)
