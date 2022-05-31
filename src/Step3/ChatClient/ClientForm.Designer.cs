@@ -28,59 +28,78 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.StartButton = new System.Windows.Forms.Button();
-            this.ChattingLog = new System.Windows.Forms.TextBox();
-            this.MyChat = new System.Windows.Forms.TextBox();
-            this.EnterButton = new System.Windows.Forms.Button();
+            this.btConnectToServer = new System.Windows.Forms.Button();
+            this.tbRecvChatMsg = new System.Windows.Forms.TextBox();
+            this.tbSendChatMsg = new System.Windows.Forms.TextBox();
+            this.btEnter = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbChatName = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // Start
+            // btConnectToServer
             // 
-            this.StartButton.Location = new System.Drawing.Point(17, 19);
-            this.StartButton.Name = "Start";
-            this.StartButton.Size = new System.Drawing.Size(112, 49);
-            this.StartButton.TabIndex = 0;
-            this.StartButton.Text = "Start";
-            this.StartButton.UseVisualStyleBackColor = true;
-            this.StartButton.Click += new System.EventHandler(this.button1_Click);
+            this.btConnectToServer.Location = new System.Drawing.Point(653, 12);
+            this.btConnectToServer.Name = "btConnectToServer";
+            this.btConnectToServer.Size = new System.Drawing.Size(120, 60);
+            this.btConnectToServer.TabIndex = 0;
+            this.btConnectToServer.Text = "connect to server";
+            this.btConnectToServer.UseVisualStyleBackColor = true;
+            this.btConnectToServer.Click += new System.EventHandler(this.button1_Click);
             // 
-            // ChattingLog
+            // tbRecvChatMsg
             // 
-            this.ChattingLog.Location = new System.Drawing.Point(17, 85);
-            this.ChattingLog.Multiline = true;
-            this.ChattingLog.Name = "ChattingList";
-            this.ChattingLog.Size = new System.Drawing.Size(756, 242);
-            this.ChattingLog.TabIndex = 1;
-            this.ChattingLog.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.tbRecvChatMsg.Location = new System.Drawing.Point(17, 85);
+            this.tbRecvChatMsg.Multiline = true;
+            this.tbRecvChatMsg.Name = "tbRecvChatMsg";
+            this.tbRecvChatMsg.Size = new System.Drawing.Size(756, 242);
+            this.tbRecvChatMsg.TabIndex = 1;
             // 
-            // MyChat
+            // tbSendChatMsg
             // 
-            this.MyChat.Location = new System.Drawing.Point(17, 355);
-            this.MyChat.Multiline = true;
-            this.MyChat.Name = "MyChat";
-            this.MyChat.Size = new System.Drawing.Size(612, 83);
-            this.MyChat.TabIndex = 2;
-            this.MyChat.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.tbSendChatMsg.Location = new System.Drawing.Point(17, 355);
+            this.tbSendChatMsg.Multiline = true;
+            this.tbSendChatMsg.Name = "tbSendChatMsg";
+            this.tbSendChatMsg.Size = new System.Drawing.Size(612, 83);
+            this.tbSendChatMsg.TabIndex = 2;
             // 
-            // Enter
+            // btEnter
             // 
-            this.EnterButton.Location = new System.Drawing.Point(656, 355);
-            this.EnterButton.Name = "Enter";
-            this.EnterButton.Size = new System.Drawing.Size(117, 83);
-            this.EnterButton.TabIndex = 3;
-            this.EnterButton.Text = "Enter";
-            this.EnterButton.UseVisualStyleBackColor = true;
-            this.EnterButton.Click += new System.EventHandler(this.button2_Click);
+            this.btEnter.Location = new System.Drawing.Point(635, 369);
+            this.btEnter.Name = "btEnter";
+            this.btEnter.Size = new System.Drawing.Size(138, 54);
+            this.btEnter.TabIndex = 3;
+            this.btEnter.Text = "send message";
+            this.btEnter.UseVisualStyleBackColor = true;
+            this.btEnter.Click += new System.EventHandler(this.btnEnter_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(55, 29);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(131, 12);
+            this.label1.TabIndex = 4;
+            this.label1.Text = "Type your chat name:";
+            // 
+            // tbChatName
+            // 
+            this.tbChatName.Location = new System.Drawing.Point(203, 25);
+            this.tbChatName.Name = "tbChatName";
+            this.tbChatName.Size = new System.Drawing.Size(166, 21);
+            this.tbChatName.TabIndex = 5;
+            this.tbChatName.Text = "yoojin";
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.EnterButton);
-            this.Controls.Add(this.MyChat);
-            this.Controls.Add(this.ChattingLog);
-            this.Controls.Add(this.StartButton);
+            this.Controls.Add(this.tbChatName);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.btEnter);
+            this.Controls.Add(this.tbSendChatMsg);
+            this.Controls.Add(this.tbRecvChatMsg);
+            this.Controls.Add(this.btConnectToServer);
             this.Name = "ClientForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -90,10 +109,12 @@
 
         #endregion
 
-        private System.Windows.Forms.Button StartButton;
-        private System.Windows.Forms.TextBox ChattingLog;
-        private System.Windows.Forms.TextBox MyChat;
-        private System.Windows.Forms.Button EnterButton;
+        private System.Windows.Forms.Button btConnectToServer;
+        private System.Windows.Forms.TextBox tbRecvChatMsg;
+        private System.Windows.Forms.TextBox tbSendChatMsg;
+        private System.Windows.Forms.Button btEnter;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbChatName;
     }
 }
 
