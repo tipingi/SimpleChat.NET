@@ -10,6 +10,7 @@ namespace ChatClient
     {
         TcpClient client = new TcpClient();
         NetworkStream stream = default(NetworkStream);
+        Thread receive_message;
         string message = string.Empty;
         public ClientForm()
         {
@@ -17,12 +18,16 @@ namespace ChatClient
         }
         private void btnEnter_Click(object sender, EventArgs e) //Enter
         {
-            byte[] buffer = Encoding.UTF8.GetBytes(this.tbSendChatMsg.Text + "$"); 
+            tbRecvChatMsg.Text = "My: " + tbSendChatMsg.Text;
+            byte[] buffer = Encoding.UTF8.GetBytes(this.tbSendChatMsg.Text); 
             stream.Write(buffer, 0, buffer.Length); 
             stream.Flush();
+            
+
+            tbSendChatMsg.Text = "";
         }
 
-        private void button1_Click(object sender, EventArgs e) //Start
+        private void button1_Click(object sender, EventArgs e) //Connect
         {
             if (!String.IsNullOrEmpty(tbUserName.Text))
             {
@@ -33,20 +38,25 @@ namespace ChatClient
                 stream.Write(buffer, 0, buffer.Length);
                 stream.Flush();
 
-                tbRecvChatMsg.Text = "Connected to server...";
+                tbRecvChatMsg.Text = "Connected to server..." + Environment.NewLine;
 
 
-                Thread receive_message = new Thread(ReceiveMessage);
-                receive_message.Start();
+                receive_message = new Thread(ReceiveMessage);
+                receive_message.Start(client);
             }
             else
-                MessageBox.Show("Please put your name.");
-                
-
-            
+                MessageBox.Show("Please put your name.");                            
         }
 
-        static void ReceiveMessage(object o)
+       private void btDisconnectToServer_Click(object sender, EventArgs e) //Disconnect
+       {
+            client.Client.Shutdown(SocketShutdown.Send);
+            receive_message.Join();
+            stream.Close();
+            Application.Exit();
+       }
+
+        private void ReceiveMessage(object o)
         {
             TcpClient _client = (TcpClient)o;
             NetworkStream _stream = _client.GetStream();
@@ -60,6 +70,7 @@ namespace ChatClient
                     break;
 
                 string _message = Encoding.UTF8.GetString(_buffer, 0, _count);
+                DisplayText(_message);
             }
 
         }
@@ -81,9 +92,10 @@ namespace ChatClient
                 //})); 
             }
             else
-                tbRecvChatMsg.AppendText(text + Environment.NewLine); 
+                tbRecvChatMsg.AppendText(text); 
         }
 
+      
         //https://it-jerryfamily.tistory.com/entry/Program-C-%EC%84%9C%EB%B2%84%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8-%EC%B1%84%ED%8C%85-%ED%86%B5%EC%8B%A0?category=611730
     }
 }

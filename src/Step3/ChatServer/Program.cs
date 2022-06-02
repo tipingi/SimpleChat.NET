@@ -12,12 +12,7 @@ namespace ChatServer
         static readonly object _locker = new object();
         static readonly Dictionary<int, TcpClient> _clients = new Dictionary<int, TcpClient>();
 
-        class User
-        {
-            public int count;
-            public string name;
-            public TcpClient client;
-        }
+       
 
         static void Main(string[] args)
         {

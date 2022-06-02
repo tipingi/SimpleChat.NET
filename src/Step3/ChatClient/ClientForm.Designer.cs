@@ -34,15 +34,16 @@
             this.btEnter = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.tbUserName = new System.Windows.Forms.TextBox();
+            this.btDisconnectToServer = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btConnectToServer
             // 
-            this.btConnectToServer.Location = new System.Drawing.Point(653, 12);
+            this.btConnectToServer.Location = new System.Drawing.Point(509, 10);
             this.btConnectToServer.Name = "btConnectToServer";
             this.btConnectToServer.Size = new System.Drawing.Size(120, 60);
             this.btConnectToServer.TabIndex = 0;
-            this.btConnectToServer.Text = "connect to server";
+            this.btConnectToServer.Text = "Connect to server";
             this.btConnectToServer.UseVisualStyleBackColor = true;
             this.btConnectToServer.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -68,7 +69,7 @@
             this.btEnter.Name = "btEnter";
             this.btEnter.Size = new System.Drawing.Size(120, 83);
             this.btEnter.TabIndex = 3;
-            this.btEnter.Text = "send message";
+            this.btEnter.Text = "Send";
             this.btEnter.UseVisualStyleBackColor = true;
             this.btEnter.Click += new System.EventHandler(this.btnEnter_Click);
             // 
@@ -77,23 +78,33 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(15, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(131, 12);
+            this.label1.Size = new System.Drawing.Size(103, 12);
             this.label1.TabIndex = 4;
-            this.label1.Text = "Type your chat name:";
+            this.label1.Text = "Type your name:";
             // 
             // tbUserName
             // 
-            this.tbUserName.Location = new System.Drawing.Point(152, 31);
+            this.tbUserName.Location = new System.Drawing.Point(124, 31);
             this.tbUserName.Name = "tbUserName";
             this.tbUserName.Size = new System.Drawing.Size(166, 21);
             this.tbUserName.TabIndex = 5;
-            this.tbUserName.Text = "UserName";
+            // 
+            // btDisconnectToServer
+            // 
+            this.btDisconnectToServer.Location = new System.Drawing.Point(653, 12);
+            this.btDisconnectToServer.Name = "btDisconnectToServer";
+            this.btDisconnectToServer.Size = new System.Drawing.Size(120, 60);
+            this.btDisconnectToServer.TabIndex = 6;
+            this.btDisconnectToServer.Text = "Disconnect to server";
+            this.btDisconnectToServer.UseVisualStyleBackColor = true;
+            this.btDisconnectToServer.Click += new System.EventHandler(this.btDisconnectToServer_Click);
             // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btDisconnectToServer);
             this.Controls.Add(this.tbUserName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btEnter);
@@ -115,6 +126,7 @@
         private System.Windows.Forms.Button btEnter;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox tbUserName;
+        private System.Windows.Forms.Button btDisconnectToServer;
     }
 }
 
