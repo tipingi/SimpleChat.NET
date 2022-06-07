@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatShare;
+using System;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
@@ -8,94 +9,122 @@ namespace ChatClient
 {
     public partial class ClientForm : Form
     {
-        TcpClient client = new TcpClient();
-        NetworkStream stream = default(NetworkStream);
-        Thread receive_message;
-        string message = string.Empty;
+        private bool _is_connected = false;
+
+        private TcpClient _tcp_client = new TcpClient();
+        private NetworkStream _nw_stream = default(NetworkStream);
+        private Thread _recv_thread;
+
         public ClientForm()
         {
             InitializeComponent();
         }
-        private void btnEnter_Click(object sender, EventArgs e) //Enter
+
+        private void btSender_Click(object sender, EventArgs e) //Enter button
         {
-            tbRecvChatMsg.Text = "My: " + tbSendChatMsg.Text;
-            byte[] buffer = Encoding.UTF8.GetBytes(this.tbSendChatMsg.Text); 
-            stream.Write(buffer, 0, buffer.Length); 
-            stream.Flush();
-            
+            if (!_is_connected)
+            {
+                MessageBox.Show("Please connect to server...");
+                return;
+            }
+
+            var _message = tbSendChatMsg.Text;
+            this.WriteChatBox("My: " + _message);
+
+            var _buffer = Encoding.UTF8.GetBytes(_message);
+            _nw_stream.Write(_buffer, 0, _buffer.Length);
+            _nw_stream.Flush();
 
             tbSendChatMsg.Text = "";
         }
 
-        private void button1_Click(object sender, EventArgs e) //Connect
+        private void btConnect_Click(object sender, EventArgs e) //Connect button
         {
+            if (_is_connected)
+            {
+                MessageBox.Show("Already connected...");
+                return;
+            }
+
             if (!String.IsNullOrEmpty(tbUserName.Text))
             {
-                client.Connect("127.0.0.1", 5000);
-                stream = client.GetStream();
+                _tcp_client.Connect(tbServerIp.Text, 5000);
+                _nw_stream = _tcp_client.GetStream();
 
-                byte[] buffer = Encoding.UTF8.GetBytes(tbUserName.Text);
-                stream.Write(buffer, 0, buffer.Length);
-                stream.Flush();
+                var _buffer = Encoding.UTF8.GetBytes(tbUserName.Text);
+                _nw_stream.Write(_buffer, 0, _buffer.Length);
+                _nw_stream.Flush();
 
-                tbRecvChatMsg.Text = "Connected to server..." + Environment.NewLine;
+                this.WriteChatBox("Connected to server...");
 
+                _recv_thread = new Thread(ReceiveMessage);
+                _recv_thread.Start(_tcp_client);
 
-                receive_message = new Thread(ReceiveMessage);
-                receive_message.Start(client);
+                _is_connected = true;
             }
             else
-                MessageBox.Show("Please put your name.");                            
+                MessageBox.Show("Please put your name.");
         }
 
-       private void btDisconnectToServer_Click(object sender, EventArgs e) //Disconnect
-       {
-            client.Client.Shutdown(SocketShutdown.Send);
-            receive_message.Join();
-            stream.Close();
-            Application.Exit();
-       }
-
-        private void ReceiveMessage(object o)
+        private void btDisConnect_Click(object sender, EventArgs e) //Disconnect button
         {
-            TcpClient _client = (TcpClient)o;
-            NetworkStream _stream = _client.GetStream();
-            byte[] _buffer = new byte[1024];
+            _tcp_client.Client.Shutdown(SocketShutdown.Send);
+
+            _recv_thread.Join();
+            _nw_stream.Close();
+
+            _is_connected = false;
+        }
+
+        private void ReceiveMessage(object o) //Receive Message TextBox
+        {
+            var _client = (TcpClient)o;
+            var _stream = _client.GetStream();
+            
+            var _buffer = new byte[1024];
 
             while (true)
             {
                 int _count = _stream.Read(_buffer, 0, _buffer.Length);
-
                 if (_count <= 0)
                     break;
 
-                string _message = Encoding.UTF8.GetString(_buffer, 0, _count);
-                DisplayText(_message);
+                var _packet = CConverter.BytesToClass(_buffer, _count);
+                DisplayText(_packet);
             }
-
         }
 
-        delegate void ShowDelegate(string text);
+        delegate void ShowDelegate(CPacket packet);
 
-        private void DisplayText(string text) 
-        { 
-            if (InvokeRequired) 
+        private void DisplayText(CPacket packet)
+        {
+            if (InvokeRequired)
             {
                 ShowDelegate del = new ShowDelegate(DisplayText);
-                this.Invoke(del, new object[] { text });
-
-                //(new Action<string>(DisplayText)).Invoke(text);
-
-                //chattingMsg.BeginInvoke(new MethodInvoker(delegate 
-                //{ 
-                //    chattingMsg.AppendText(text + Environment.NewLine); 
-                //})); 
+                this.Invoke(del, new object[] { packet });
             }
             else
-                tbRecvChatMsg.AppendText(text); 
+            {
+                if (packet.message == packet.userid)
+                {
+                    WriteChatBox("");
+                }
+                else
+                {
+                    WriteChatBox($"{packet.userid}: {packet.message}");
+                }
+            }
         }
 
-      
-        //https://it-jerryfamily.tistory.com/entry/Program-C-%EC%84%9C%EB%B2%84%ED%81%B4%EB%9D%BC%EC%9D%B4%EC%96%B8%ED%8A%B8-%EC%B1%84%ED%8C%85-%ED%86%B5%EC%8B%A0?category=611730
+            private void WriteChatBox(string message)
+        {
+            tbRecvChatMsg.AppendText(message + Environment.NewLine);
+        }
+
+
+        private void btClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
