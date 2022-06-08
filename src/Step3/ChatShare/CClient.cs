@@ -4,13 +4,18 @@ namespace ChatShare
 {
     public class CClient
     {
+        public bool isconnected
+        {
+            get;
+            set;
+        }
         public int connectId
         {
             get;
             set;
         }
 
-        public bool isConnected
+        public bool isusername
         {
             get;
             set;

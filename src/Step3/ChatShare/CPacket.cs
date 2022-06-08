@@ -1,11 +1,5 @@
 ﻿namespace ChatShare
 {
-    public enum PacketType 
-    {
-        command,
-        message
-    }
-
     public class CPacket
     {
         public PacketType type
@@ -24,6 +18,17 @@
         {
             get;
             set;
+        }    
+
+        public bool isconnected
+        {
+            get;
+            set;
         }
+    }
+    public enum PacketType
+    {
+        command,
+        message
     }
 }

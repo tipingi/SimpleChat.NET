@@ -20,23 +20,6 @@ namespace ChatClient
             InitializeComponent();
         }
 
-        private void btSender_Click(object sender, EventArgs e) //Enter button
-        {
-            if (!_is_connected)
-            {
-                MessageBox.Show("Please connect to server...");
-                return;
-            }
-
-            var _message = tbSendChatMsg.Text;
-            this.WriteChatBox("My: " + _message);
-
-            var _buffer = Encoding.UTF8.GetBytes(_message);
-            _nw_stream.Write(_buffer, 0, _buffer.Length);
-            _nw_stream.Flush();
-
-            tbSendChatMsg.Text = "";
-        }
 
         private void btConnect_Click(object sender, EventArgs e) //Connect button
         {
@@ -68,14 +51,32 @@ namespace ChatClient
 
         private void btDisConnect_Click(object sender, EventArgs e) //Disconnect button
         {
+            _is_connected = false;
+         
             _tcp_client.Client.Shutdown(SocketShutdown.Send);
 
             _recv_thread.Join();
-            _nw_stream.Close();
-
-            _is_connected = false;
+            _nw_stream.Close();           
         }
 
+        private void btSender_Click(object sender, EventArgs e) //Enter button
+        {
+            if (!_is_connected)
+            {
+                MessageBox.Show("Please connect to server...");
+                return;
+            }
+
+            var _message = tbSendChatMsg.Text;
+            this.WriteChatBox("My: " + _message);
+
+            var _buffer = Encoding.UTF8.GetBytes(_message);
+            _nw_stream.Write(_buffer, 0, _buffer.Length);
+            _nw_stream.Flush();
+
+            tbSendChatMsg.Text = "";
+        }
+ 
         private void ReceiveMessage(object o) //Receive Message TextBox
         {
             var _client = (TcpClient)o;
@@ -94,6 +95,7 @@ namespace ChatClient
             }
         }
 
+ 
         delegate void ShowDelegate(CPacket packet);
 
         private void DisplayText(CPacket packet)
@@ -104,11 +106,12 @@ namespace ChatClient
                 this.Invoke(del, new object[] { packet });
             }
             else
-            {
+            {              
                 if (packet.message == packet.userid)
                 {
                     WriteChatBox("");
                 }
+               
                 else
                 {
                     WriteChatBox($"{packet.userid}: {packet.message}");
