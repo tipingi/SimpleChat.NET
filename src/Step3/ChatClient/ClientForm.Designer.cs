@@ -37,13 +37,14 @@
             this.btDisConnect = new System.Windows.Forms.Button();
             this.tbServerIp = new System.Windows.Forms.TextBox();
             this.btClose = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btConnect
             // 
-            this.btConnect.Location = new System.Drawing.Point(509, 10);
+            this.btConnect.Location = new System.Drawing.Point(467, 16);
             this.btConnect.Name = "btConnect";
-            this.btConnect.Size = new System.Drawing.Size(120, 60);
+            this.btConnect.Size = new System.Drawing.Size(92, 54);
             this.btConnect.TabIndex = 0;
             this.btConnect.Text = "Connect to server";
             this.btConnect.UseVisualStyleBackColor = true;
@@ -78,7 +79,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 34);
+            this.label1.Location = new System.Drawing.Point(15, 18);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(103, 12);
             this.label1.TabIndex = 4;
@@ -86,16 +87,16 @@
             // 
             // tbUserName
             // 
-            this.tbUserName.Location = new System.Drawing.Point(124, 31);
+            this.tbUserName.Location = new System.Drawing.Point(124, 12);
             this.tbUserName.Name = "tbUserName";
             this.tbUserName.Size = new System.Drawing.Size(166, 21);
             this.tbUserName.TabIndex = 5;
             // 
             // btDisConnect
             // 
-            this.btDisConnect.Location = new System.Drawing.Point(653, 12);
+            this.btDisConnect.Location = new System.Drawing.Point(574, 16);
             this.btDisConnect.Name = "btDisConnect";
-            this.btDisConnect.Size = new System.Drawing.Size(120, 60);
+            this.btDisConnect.Size = new System.Drawing.Size(92, 54);
             this.btDisConnect.TabIndex = 6;
             this.btDisConnect.Text = "Disconnect to server";
             this.btDisConnect.UseVisualStyleBackColor = true;
@@ -103,7 +104,7 @@
             // 
             // tbServerIp
             // 
-            this.tbServerIp.Location = new System.Drawing.Point(308, 31);
+            this.tbServerIp.Location = new System.Drawing.Point(124, 49);
             this.tbServerIp.Name = "tbServerIp";
             this.tbServerIp.Size = new System.Drawing.Size(166, 21);
             this.tbServerIp.TabIndex = 7;
@@ -111,19 +112,29 @@
             // 
             // btClose
             // 
-            this.btClose.Location = new System.Drawing.Point(17, 457);
+            this.btClose.Location = new System.Drawing.Point(681, 16);
             this.btClose.Name = "btClose";
-            this.btClose.Size = new System.Drawing.Size(149, 50);
+            this.btClose.Size = new System.Drawing.Size(92, 54);
             this.btClose.TabIndex = 8;
             this.btClose.Text = "Close";
             this.btClose.UseVisualStyleBackColor = true;
             this.btClose.Click += new System.EventHandler(this.btClose_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 52);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(93, 12);
+            this.label2.TabIndex = 9;
+            this.label2.Text = "Type Server IP:";
+            // 
             // ClientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(827, 519);
+            this.ClientSize = new System.Drawing.Size(795, 454);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btClose);
             this.Controls.Add(this.tbServerIp);
             this.Controls.Add(this.btDisConnect);
@@ -151,6 +162,7 @@
         private System.Windows.Forms.Button btDisConnect;
         private System.Windows.Forms.TextBox tbServerIp;
         private System.Windows.Forms.Button btClose;
+        private System.Windows.Forms.Label label2;
     }
 }
 

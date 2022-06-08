@@ -35,7 +35,7 @@ namespace ChatServer
                 lock (_locker) 
                     _clients.Add(_count, _connector); 
 
-                Console.WriteLine("client #{0} is connected", _count);
+                Console.WriteLine($"client {_connector.connectId} is connected");
 
                 var _child_thread = new Thread(handle_clients);
                 _child_thread.Start(_connector);
@@ -80,7 +80,7 @@ namespace ChatServer
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"client #{_sender.userid} is error: {ex.Message}");
+                Console.WriteLine($"#{_sender.userid} is error: {ex.Message}");
             }
             finally
             {
