@@ -52,9 +52,8 @@ namespace ChatClient
         private void btDisConnect_Click(object sender, EventArgs e) //Disconnect button
         {
             _is_connected = false;
-         
-            _tcp_client.Client.Shutdown(SocketShutdown.Send);
 
+            _tcp_client.Client.Shutdown(SocketShutdown.Send);
             _recv_thread.Join();
             _nw_stream.Close();           
         }
@@ -106,7 +105,12 @@ namespace ChatClient
                 this.Invoke(del, new object[] { packet });
             }
             else
-            {              
+            {   
+               /* if(!_is_connected)
+                {
+                    WriteChatBox($"{packet.userid} is not online");
+                }*/
+
                 if (packet.message == packet.userid)
                 {
                     WriteChatBox("");

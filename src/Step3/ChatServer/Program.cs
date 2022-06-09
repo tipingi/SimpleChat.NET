@@ -26,7 +26,7 @@ namespace ChatServer
 
                 var _connector = new CClient
                 {
-                    isconnected = true,
+                  //  isconnected = true,
                     connectId = _count,
                     userid = "",
                     isusername = false,
@@ -49,25 +49,21 @@ namespace ChatServer
         {
             var _sender = (CClient)o;
             var _connectId = _sender.connectId;
-            var _is_connected = _sender.isconnected;
-
+           
             try
             {
                 while (true)
-                {
-                    
+                {                   
                     var _stream = _sender.client.GetStream();                    
                     var _buffer = new byte[1024];
-                    _is_connected = _sender.isconnected;
+                  //  var _is_connected = _sender.isconnected;
 
                     var _count = _stream.Read(_buffer, 0, _buffer.Length);
                     if (_count == 0)
                         break;
 
                     var _message = Encoding.UTF8.GetString(_buffer, 0, _count);
-
                     
-
                     if (!_sender.isusername) //username이면
                     {
                         _sender.userid = _message;
@@ -80,7 +76,6 @@ namespace ChatServer
                         broadcast(PacketType.message, _message, _sender);
                     }
                 }
-
                 
                 _sender.client.Client.Shutdown(SocketShutdown.Both);
                 _sender.client.Close();
@@ -103,7 +98,7 @@ namespace ChatServer
                 type = type,
                 userid = sender.userid,
                 message = message,
-                isconnected = sender.isconnected             
+               // isconnected = sender.isconnected             
             };
 
             var _buffer = CConverter.ClassToBytes(_packet);
@@ -119,7 +114,7 @@ namespace ChatServer
                     var _stream = _client.client.GetStream();         
                     _stream.Write(_buffer, 0, _buffer.Length);
 
-                    //TcpClient _client 변수에 GetStream 함수 사용으로 인해 데이터를 보내고 받는데 사용되는 NetworkStream 값을 반환.
+                    // TcpClient _client 변수에 GetStream 함수 사용으로 인해 데이터를 보내고 받는데 사용되는 NetworkStream 값을 반환.
                     // continue문: 아래에 있는 실행해야 하는 문장들을 건너뛰고 다음 반복문 실행.
                     // break문: 더 이상 반복하지 말고 while, for문 끝냄.
 
