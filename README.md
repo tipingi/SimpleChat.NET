@@ -1,6 +1,5 @@
 # SimpleChat.NET
 
-
 ## Description
 > 2022.05. - 2022.06.
 
@@ -39,35 +38,43 @@ WinForm을 이용한 Client Chatting Program 개발.
 
 - client
 
-### Installation and Usage
+
+## Installation and Usage
 
 1. ChatSetup.zip 폴더 다운로드 및 압축 해제.
 
 ![1](./doc/install/1.jpg)
-
+----
 2. setup.exe 파일 실행.
-![2](./doc/install/2.jpg)
 
+![2](./doc/install/2.jpg)
+---
 3. 설치 진행.
+
 ![3](./doc/install/3.jpg)
 ![4](./doc/install/4.jpg)
 ![5](./doc/install/5.jpg)
 ![6](./doc/install/6.jpg)
-
+---
 4. 바탕화면 SimpleChat 아이콘 생성 확인 및 실행.
-![7](./doc/install/7.jpg)
 
+![7](./doc/install/7.jpg)
+---
 5. Type your name: 칸에 사용자 이름 입력.
+
 ![8](./doc/install/8.jpg)
 ![9](./doc/install/9.jpg)
-
+---
 6. Connect to server 버튼 클릭.
+
 ![10](./doc/install/10.jpg)
-
+---
 7. 메시지 입력 후 Send 버튼 클릭.
-![11](./doc/install/11.jpg)
 
+![11](./doc/install/11.jpg)
+---
 8. 채팅 종료시 Disconnect to server 버튼 클릭 후 Close.
+
 ![12](./doc/install/12.jpg)
 
 
