@@ -10,7 +10,6 @@ namespace ChatClient
     public partial class ClientForm : Form
     {
         private bool _is_connected = false;
-
         private TcpClient _tcp_client = new TcpClient();
         private NetworkStream _nw_stream = default(NetworkStream);
         private Thread _recv_thread;
@@ -19,7 +18,6 @@ namespace ChatClient
         {
             InitializeComponent();
         }
-
 
         private void btConnect_Click(object sender, EventArgs e) //Connect button
         {
@@ -52,10 +50,16 @@ namespace ChatClient
         private void btDisConnect_Click(object sender, EventArgs e) //Disconnect button
         {
             _is_connected = false;
+            this.WriteChatBox("Disconnect from server...");
 
             _tcp_client.Client.Shutdown(SocketShutdown.Send);
             _recv_thread.Join();
             _nw_stream.Close();           
+        }
+        
+        private void btClose_Click(object sender, EventArgs e) //Close button
+        {
+            this.Close();
         }
 
         private void btSender_Click(object sender, EventArgs e) //Enter button
@@ -126,12 +130,6 @@ namespace ChatClient
             private void WriteChatBox(string message)
         {
             tbRecvChatMsg.AppendText(message + Environment.NewLine);
-        }
-
-
-        private void btClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
     }
 }

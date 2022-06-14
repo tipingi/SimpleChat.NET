@@ -19,12 +19,6 @@
             get;
             set;
         }    
-
-       /* public bool isconnected
-        {
-            get;
-            set;
-        }*/
     }
     public enum PacketType
     {

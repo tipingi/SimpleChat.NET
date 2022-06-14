@@ -145,7 +145,7 @@
             this.Controls.Add(this.tbRecvChatMsg);
             this.Controls.Add(this.btConnect);
             this.Name = "ClientForm";
-            this.Text = "Form1";
+            this.Text = "ChatProgram";
             this.ResumeLayout(false);
             this.PerformLayout();
 
