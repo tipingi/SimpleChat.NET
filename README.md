@@ -1,36 +1,19 @@
-# SimpleChat.NET 소개
+# SimpleChat.NET
 
-<<<<<<< HEAD
 
 ## Description
 > 2022.05. - 2022.06.
 
 - Simple chat for .NET Framework
 - C# .NET을 이용한 채팅 프로그램 작성 프로젝트.
-=======
-- Simple chat for .NET
-- C# .NET을 이용한 채팅 프로그램 작성 프로젝트입니다.
 
 
-# 작성 의도 또는 목적
->>>>>>> parent of 0ab101d (220614 ing)
-
-- C#
-
-<<<<<<< HEAD
 ## About Project
-=======
-# 작업순서
->>>>>>> parent of 0ab101d (220614 ing)
 
 ### Task Order
 - 3단계로 작성.
 
-<<<<<<< HEAD
 #### Step1
-=======
-## Step1
->>>>>>> parent of 0ab101d (220614 ing)
 
 콘솔 앱(.NET Framework)을 이용한 기본적인 Chatting Program 개발.
 
@@ -56,12 +39,16 @@ WinForm을 이용한 Client Chatting Program 개발.
 
 - client
 
+---------------
+
 ### Installation and Usage
 
 1. ChatSetup.zip 폴더 다운로드 및 압축 해제.
+
 ![1](./doc/install/1.jpg)
 
 2. setup.exe 파일 실행.
+
 ![2](./doc/install/2.jpg)
 
 3. 설치 진행.
