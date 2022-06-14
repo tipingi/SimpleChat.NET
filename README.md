@@ -1,18 +1,22 @@
-# SimpleChat.NET 소개
+# SimpleChat.NET
 
-- Simple chat for .NET
+## 프로젝트 설명
+
+- Simple chat for .NET Framework
 - C# .NET을 이용한 채팅 프로그램 작성 프로젝트입니다.
 
+## 프로젝트 정보
 
-# 작성 의도 또는 목적
+### Installation
 
-- C#
 
-# 작업순서
+
+
+## 작업순서
 
 - 3단계로 작성하였습니다.
 
-## Step1
+### Step1
 
 콘솔 앱(.NET Framework)을 이용한 기본적인 Chatting Program 개발.
 
