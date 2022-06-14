@@ -42,6 +42,7 @@ WinForm을 이용한 Client Chatting Program 개발.
 ### Installation and Usage
 
 1. ChatSetup.zip 폴더 다운로드 및 압축 해제.
+
 ![1](./doc/install/1.jpg)
 
 2. setup.exe 파일 실행.
